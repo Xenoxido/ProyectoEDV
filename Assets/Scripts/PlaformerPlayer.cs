@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlaformerPlayer : MonoBehaviour
 {
+    private int Health = 150;
     public float speed = 4.5f;
     public float jumpForce = 12.0f;
     private Rigidbody2D _body;
@@ -17,7 +18,12 @@ public class PlaformerPlayer : MonoBehaviour
     }
     void Update()
     {
-        float deltaX = Input.GetAxis("Horizontal") * speed;
+        //Hurt(150);
+        float deltaX = 0.0f;
+        if (!_anim.GetBool("Dead"))
+        {
+            deltaX = Input.GetAxis("Horizontal") * speed;
+        }
         _anim.SetFloat("speed", Mathf.Abs(deltaX));
         if (!Mathf.Approximately(deltaX, 0))
         {
@@ -33,7 +39,7 @@ public class PlaformerPlayer : MonoBehaviour
         Collider2D hit = Physics2D.OverlapArea(corner1, corner2);
         bool grounded = (hit != null);
         _anim.SetBool("grounded", grounded);
-        if (grounded && Input.GetKeyDown(KeyCode.Space))
+        if (grounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -51,5 +57,22 @@ public class PlaformerPlayer : MonoBehaviour
             Vector3 corner2 = new Vector3(min.x, min.y - .2f, 0);
             Gizmos.DrawCube((corner1 + corner2) * 0.5f, corner2 - corner1);
         }
+    }
+
+    private void Hurt(int damage)
+    {
+       if(Health > 0)
+        {
+            Health -= damage;
+        }
+       if (Health <= 0)
+        {
+            Dead();
+        }
+    }
+
+    private void Dead()
+    {
+        _anim.SetBool("Dead", true);
     }
 }
