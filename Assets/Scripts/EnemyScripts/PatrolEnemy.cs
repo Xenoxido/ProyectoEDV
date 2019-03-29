@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemyhit : MonoBehaviour
+public class PatrolEnemy : MonoBehaviour
 {
     private BoxCollider2D _boxCollider;
     private Rigidbody2D _body;
@@ -16,15 +16,9 @@ public class Enemyhit : MonoBehaviour
         right = true;
         
         
-    }
+    }  
 
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("test collision");
-        flip();
-    }
-
-    void OnCollisionStay(Collision collisionInfo) { Debug.Log("test collision"); }
+    
 
 
     // Update is called once per frame

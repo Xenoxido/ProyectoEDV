@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class collide : MonoBehaviour
+public class Collide : MonoBehaviour
 { public int force = 10;
 
     
@@ -10,7 +10,7 @@ public class collide : MonoBehaviour
         SendMessage("flip");        
         if (col.gameObject.name == "Player")
         {
-            col.gameObject.SendMessage("hit", 10);
+            col.gameObject.SendMessage("Hurt", 10);
         }
     }
 }

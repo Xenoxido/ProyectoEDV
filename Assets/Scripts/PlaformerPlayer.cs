@@ -61,6 +61,7 @@ public class PlaformerPlayer : MonoBehaviour
 
     private void Hurt(int damage)
     {
+        Debug.Log("HURT");
        if(Health > 0)
         {
             Health -= damage;
