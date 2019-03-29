@@ -36,7 +36,8 @@ public class PlaformerPlayer : MonoBehaviour
         if (grounded && Input.GetKeyDown(KeyCode.Space))
         {
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
+        }
+
     }
 
     private void OnDrawGizmos()
