@@ -18,12 +18,11 @@ public class PlaformerPlayer : MonoBehaviour
     }
     void Update()
     {
+
+        if (_anim.GetBool("Dead")) { return; }
         //Hurt(150);
         float deltaX = 0.0f;
-        if (!_anim.GetBool("Dead"))
-        {
-            deltaX = Input.GetAxis("Horizontal") * speed;
-        }
+         deltaX = Input.GetAxis("Horizontal") * speed;
         _anim.SetFloat("speed", Mathf.Abs(deltaX));
         if (!Mathf.Approximately(deltaX, 0))
         {
