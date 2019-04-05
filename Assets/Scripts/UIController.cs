@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.UIElements;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -18,4 +20,5 @@ public class UIController : MonoBehaviour
     {
         text.text = gameManager.getCoinsCollected().ToString();
     }
+
 }

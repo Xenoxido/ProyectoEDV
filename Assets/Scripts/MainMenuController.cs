@@ -9,7 +9,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Image settingsPopup;
     public void OnClickPlay()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("edv proyecto");
     }
 
     public void OnClickCredits()

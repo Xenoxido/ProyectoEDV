@@ -130,3 +130,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Coin
+  gameManager: {fileID: 2762196519831289437, guid: 98024f5c6d1a6f14a9b7863d6178b488,
+    type: 3}

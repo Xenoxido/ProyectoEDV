@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaformerPlayer : MonoBehaviour
 {
+    [SerializeField] private RestartPopup restartPopup;
     private int Health = 150;
     public float speed = 4.5f;
     public float jumpForce = 12.0f;
@@ -74,5 +76,6 @@ public class PlaformerPlayer : MonoBehaviour
     private void Dead()
     {
         _anim.SetBool("Dead", true);
+        restartPopup.showDiedPanel();
     }
 }
