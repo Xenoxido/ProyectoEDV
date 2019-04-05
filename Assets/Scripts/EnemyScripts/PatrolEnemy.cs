@@ -32,7 +32,9 @@ public class PatrolEnemy : MonoBehaviour
                deltaX *= -1;              
           }
         Vector2 movement = Vector2.right;
-        movement = movement * deltaX * speed;      
+        movement = movement * deltaX * speed;
+        movement.y = _body.velocity.y;
+              
         
         _body.velocity = movement;
     }
