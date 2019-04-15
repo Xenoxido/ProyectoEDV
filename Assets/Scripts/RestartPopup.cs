@@ -1,14 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.UIElements;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class UIController : MonoBehaviour
+public class RestartPopup : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private Text text;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +14,17 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = gameManager.getCoinsCollected().ToString();
+        
     }
 
+    public void onClickRestart()
+    {
+        SceneManager.LoadScene("edv proyecto");
+        gameObject.SetActive(false);
+    }
+
+    public void showDiedPanel()
+    {
+        gameObject.SetActive(true);
+    }
 }
