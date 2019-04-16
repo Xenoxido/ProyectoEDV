@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PatrolEnemy : MonoBehaviour
 {
-    private BoxCollider2D _boxCollider;
+    
     private Rigidbody2D _body;
     public float speed = 4.5f;
     public float runspeed = 9f;
@@ -13,7 +13,7 @@ public class PatrolEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _boxCollider = GetComponent<BoxCollider2D>();
+        
         _body = GetComponent<Rigidbody2D>();
         right = true;
         currentSpeed = speed;
