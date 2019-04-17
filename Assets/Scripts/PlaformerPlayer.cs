@@ -12,11 +12,13 @@ public class PlaformerPlayer : MonoBehaviour
     private Rigidbody2D _body;
     private Animator _anim;
     private BoxCollider2D _box;
+    private AudioSource _audio;
     void Start()
     {
         _body = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _box = GetComponent<BoxCollider2D>();
+        _audio = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -42,6 +44,7 @@ public class PlaformerPlayer : MonoBehaviour
         _anim.SetBool("grounded", grounded);
         if (grounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
+            _audio.Play();
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
