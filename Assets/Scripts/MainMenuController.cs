@@ -7,6 +7,12 @@ using UnityEngine.UI;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private Image settingsPopup;
+    GameObject audio;
+    private void Start()
+    {
+        audio = GameObject.FindGameObjectWithTag("music");
+        settingsPopup.gameObject.SetActive(false);
+    }
     public void OnClickPlay()
     {
         SceneManager.LoadScene("edv proyecto");
@@ -20,6 +26,13 @@ public class MainMenuController : MonoBehaviour
     public void OnClickClose()
     {
         settingsPopup.gameObject.SetActive(false);
+    }
+    public void mute()
+    {
+        if (audio != null)
+        {
+            audio.SendMessage("Pause");
+        }
     }
 
 }
