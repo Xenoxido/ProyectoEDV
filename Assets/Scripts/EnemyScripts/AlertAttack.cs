@@ -4,10 +4,15 @@ using UnityEngine;
 using System.Collections;
 
 
-public class ExampleClass : MonoBehaviour
+public class AlertAttack : MonoBehaviour
 {
-    public void AlertObserver(string s)
+
+
+    public void AlertObserver(int i)
     {
-        SendMessage("Attack");
+        if (i == 1)
+            SendMessage("isAttacking", true);
+        if (i == 0)
+            SendMessage("isAttacking", false);
     }
 }

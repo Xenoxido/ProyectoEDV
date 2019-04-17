@@ -14,12 +14,12 @@ public class MainMenuController : MonoBehaviour
 
     public void OnClickCredits()
     {
-        settingsPopup.gameObject.SetActive(true);
+        settingsPopup.gameObject.SetActive(true);        
     }
 
     public void OnClickClose()
     {
-        settingsPopup.gameObject.SetActive(false);
+        settingsPopup.gameObject.SetActive(false);        
     }
 
 }

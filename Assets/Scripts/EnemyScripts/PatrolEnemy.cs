@@ -7,7 +7,7 @@ public class PatrolEnemy : MonoBehaviour
     
     private Rigidbody2D _body;
     public float speed = 4.5f;
-    public float runspeed = 9f;
+    public float runspeed = 9f;    
     private float currentSpeed;
     private bool right;
     // Start is called before the first frame update
@@ -58,5 +58,17 @@ public class PatrolEnemy : MonoBehaviour
             currentSpeed = speed;
         }
 
+    }
+
+    private void isAttacking(bool at)
+    {
+        if (at)
+        {
+            currentSpeed = 0;
+        }
+        else
+        {
+            currentSpeed = speed;
+        }
     }
 }
