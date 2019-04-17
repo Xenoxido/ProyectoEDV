@@ -8,6 +8,6 @@ public class ExampleClass : MonoBehaviour
 {
     public void AlertObserver(string s)
     {
-        SendMessage(Attack)
+        SendMessage("Attack");
     }
 }
