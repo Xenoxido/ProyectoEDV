@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Collide : MonoBehaviour
 { public int force = 50;
+    private int currentForce;
+
+
+    void Start()
+    {
+        currentForce = force;
+    }
     
 
 
@@ -12,8 +19,23 @@ public class Collide : MonoBehaviour
                
         if (col.gameObject.name == "Player")
         {
-            col.gameObject.SendMessage("Hurt", force);
+            col.gameObject.SendMessage("Hurt", currentForce);
             SendMessage("flip");
         }
+    }
+
+    void changeForce(int newforce)
+    {
+        Debug.Log(newforce);
+        if (newforce == 0)
+        {
+            
+            currentForce = force;
+        }
+        else
+        {
+            currentForce = newforce;
+        }
+
     }
 }

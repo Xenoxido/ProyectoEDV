@@ -17,6 +17,7 @@ public class PatrolEnemy : MonoBehaviour
         _body = GetComponent<Rigidbody2D>();
         right = true;
         currentSpeed = speed;
+        bool patrol = false;
         
         
     }  
@@ -35,14 +36,15 @@ public class PatrolEnemy : MonoBehaviour
                deltaX *= -1;              
           }
         Vector2 movement = Vector2.right;
-        movement = movement * deltaX * currentSpeed;      
+        movement.y = _body.velocity.y;
+        movement.x = movement.x * deltaX * currentSpeed;      
         
         _body.velocity = movement;
+        
     }
 
     private void flip()
     {
-
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         right = transform.localScale.x > 0;
     }
@@ -51,6 +53,7 @@ public class PatrolEnemy : MonoBehaviour
     {
         if (shouldRun)
         {
+            Debug.Log("run");
             currentSpeed = runspeed;
         }
         else
@@ -60,15 +63,10 @@ public class PatrolEnemy : MonoBehaviour
 
     }
 
-    private void isAttacking(bool at)
+    private void stay()
     {
-        if (at)
-        {
-            currentSpeed = 0;
-        }
-        else
-        {
-            currentSpeed = speed;
-        }
+        currentSpeed = 0;
     }
+
+    
 }

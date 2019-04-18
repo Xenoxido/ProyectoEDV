@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class RestartPopup : MonoBehaviour
 {
+    float time;
     // Start is called before the first frame update
     void Start()
     {
+        time = Time.timeScale;
         this.gameObject.SetActive(false);
     }
 
@@ -18,13 +20,14 @@ public class RestartPopup : MonoBehaviour
     }
 
     public void onClickRestart()
-    {
+    {        
         SceneManager.LoadScene("edv proyecto");
         gameObject.SetActive(false);
+        
     }
 
     public void showDiedPanel()
-    {
+    {        
         gameObject.SetActive(true);
     }
 }

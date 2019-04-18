@@ -26,14 +26,14 @@ public class SettingsPopup : MonoBehaviour
     {
         Time.timeScale = 0;
         gameObject.SetActive(true);
-        Time.timeScale = 0;
+        
     }
 
     public void close()
     {
         Time.timeScale = time;
         gameObject.SetActive(false);
-        Time.timeScale = 1;
+        
     }
 
 
