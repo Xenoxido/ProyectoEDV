@@ -12,19 +12,31 @@ public class PlaformerPlayer : MonoBehaviour
     private Rigidbody2D _body;
     private Animator _anim;
     private BoxCollider2D _box;
-    private AudioSource _audio;
+    private AudioSource _audioJump;
+    private AudioSource _audioHurt;
+    private float knockback = 0;
     void Start()
     {
         _body = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _box = GetComponent<BoxCollider2D>();
-        _audio = GetComponent<AudioSource>();
+        var aSources = GetComponents<AudioSource>();
+        _audioJump = aSources[0];
+        _audioHurt = aSources[1];
+
     }
     void Update()
     {
 
-        if (_anim.GetBool("Dead")) { return; }
+        if (_anim.GetBool("Dead")||Time.timeScale==0) {
+            _body.velocity = Vector2.zero;
+            return; }
         //Hurt(150);
+        if(knockback > 0)
+        {
+            knockback -= Time.deltaTime;
+            return;
+        }
         float deltaX = 0.0f;
          deltaX = Input.GetAxis("Horizontal") * speed;
         _anim.SetFloat("speed", Mathf.Abs(deltaX));
@@ -44,7 +56,7 @@ public class PlaformerPlayer : MonoBehaviour
         _anim.SetBool("grounded", grounded);
         if (grounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
-            _audio.Play();
+            _audioJump.Play();
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
@@ -65,20 +77,37 @@ public class PlaformerPlayer : MonoBehaviour
 
     private void Hurt(int damage)
     {
-        Debug.Log("HURT");
+        
        if(Health > 0)
         {
             Health -= damage;
+            _audioHurt.Play();
         }
        if (Health <= 0)
         {
             Dead();
         }
+        else
+        {
+            
+        }
+    }
+
+    private void Knockback(Vector2 dir)
+    {
+        if (_anim.GetBool("Dead") == true)
+            return;
+        knockback = 0.3f;
+        
+        _body.velocity = Vector2.zero;
+        _body.AddForce(new Vector2(dir.x*3, 10 ), ForceMode2D.Impulse);
+       
     }
 
     private void Dead()
-    {
+    {        
         _anim.SetBool("Dead", true);
+        _body.velocity = Vector2.zero;
         restartPopup.showDiedPanel();
     }
 }

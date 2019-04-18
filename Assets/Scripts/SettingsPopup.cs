@@ -58,5 +58,10 @@ public class SettingsPopup : MonoBehaviour
             audio.SendMessage("Pause");
         }
     }
+
+    public void volume(float f)
+    {
+        AudioListener.volume = f;
+    }
     
 }

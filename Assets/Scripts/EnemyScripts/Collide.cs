@@ -19,14 +19,15 @@ public class Collide : MonoBehaviour
                
         if (col.gameObject.name == "Player")
         {
-            col.gameObject.SendMessage("Hurt", currentForce);
+            col.gameObject.SendMessage("Hurt", currentForce);  
+            col.gameObject.SendMessage("Knockback", col.contacts[0].point-(Vector2)transform.position);
             SendMessage("flip");
         }
     }
 
     void changeForce(int newforce)
     {
-        Debug.Log(newforce);
+        
         if (newforce == 0)
         {
             

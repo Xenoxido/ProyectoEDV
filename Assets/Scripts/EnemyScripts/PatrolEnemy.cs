@@ -53,7 +53,7 @@ public class PatrolEnemy : MonoBehaviour
     {
         if (shouldRun)
         {
-            Debug.Log("run");
+            
             currentSpeed = runspeed;
         }
         else

@@ -7,6 +7,7 @@ public class Attack : MonoBehaviour
 
     private Animator _anim;
     private Rigidbody2D _body;
+    private AudioSource _audio;
 
     public Transform playerDetection;
     // Start is called before the first frame update
@@ -14,6 +15,7 @@ public class Attack : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         _body = GetComponent<Rigidbody2D>();
+        _audio = GetComponent<AudioSource>();
         
         
     }
@@ -45,6 +47,7 @@ public class Attack : MonoBehaviour
             _body.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
             SendMessage("run", true);
             SendMessage("changeForce", 150);
+            _audio.Play();
         }
         if (i == 2)
         {

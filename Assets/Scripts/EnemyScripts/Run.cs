@@ -5,12 +5,14 @@ using UnityEngine;
 public class Run : MonoBehaviour    
 {
     private Animator _anim;
+    private AudioSource _audio;
 
     public Transform playerDetection;
     // Start is called before the first frame update
     void Start()
     {
         _anim = GetComponent<Animator>();
+        _audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class Run : MonoBehaviour
             if (_anim.GetBool("Sees") == false)
             {
                 SendMessage("run", true);
+                _audio.Play();
                 _anim.SetBool("Sees", true);
             }
         }
@@ -35,6 +38,7 @@ public class Run : MonoBehaviour
             {
                 SendMessage("run", false);
                 _anim.SetBool("Sees", false);
+                _audio.Stop();
             }
 
         }
