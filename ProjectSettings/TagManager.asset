@@ -9,6 +9,7 @@ TagManager:
   - naranja
   - paella
   - petardo
+  - Canvas
   layers:
   - Default
   - TransparentFX

@@ -16,8 +16,11 @@ public class CollectableItem : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Item collected: " + itemName);
-        gameManager.SendMessage("CoinCollected");
-        Destroy(this.gameObject);
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Item collected: " + itemName);
+            gameManager.SendMessage("CoinCollected");
+            Destroy(this.gameObject);
+        }
     }
 }
