@@ -29,7 +29,7 @@ public class Attack : MonoBehaviour
         RaycastHit2D straightRay = Physics2D.Raycast(playerDetection.position, dir, 2f);                 
         if (straightRay.collider && straightRay.collider.tag == "Player")
         {
-            Debug.Log("player");
+            
             if (_anim.GetBool("Attacks") == false)
             {                
                 _anim.SetBool("Attacks", true);
