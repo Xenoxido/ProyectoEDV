@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlaformerPlayer : MonoBehaviour
 {
     [SerializeField] private RestartPopup restartPopup;
+    [SerializeField] private AudioClip dieSong;
     private int Health = 150;
     public float speed = 4.5f;
     public float jumpForce = 12.0f;
@@ -105,8 +106,9 @@ public class PlaformerPlayer : MonoBehaviour
     }
 
     private void Dead()
-    {        
+    {
         _anim.SetBool("Dead", true);
+        _audioHurt.PlayOneShot(dieSong);
         _body.velocity = Vector2.zero;
         restartPopup.showDiedPanel();
     }
