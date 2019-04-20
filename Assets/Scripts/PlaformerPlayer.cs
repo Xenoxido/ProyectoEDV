@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlaformerPlayer : MonoBehaviour
 {
     [SerializeField] private RestartPopup restartPopup;
+    [SerializeField] private AudioClip dieSong;
     private int Health = 150;
     public float speed = 4.5f;
     public float jumpForce = 12.0f;
@@ -14,6 +15,7 @@ public class PlaformerPlayer : MonoBehaviour
     private BoxCollider2D _box;
     private AudioSource _audioJump;
     private AudioSource _audioHurt;
+    private AudioSource _music;
     private float knockback = 0;
     void Start()
     {
@@ -105,9 +107,15 @@ public class PlaformerPlayer : MonoBehaviour
     }
 
     private void Dead()
-    {        
-        _anim.SetBool("Dead", true);
-        _body.velocity = Vector2.zero;
-        restartPopup.showDiedPanel();
+    {
+        if (!_anim.GetBool("Dead"))
+        {
+            _anim.SetBool("Dead", true);
+            AudioSource _music = GameObject.FindGameObjectWithTag("music").GetComponent<AudioSource>();
+            _audioHurt.PlayOneShot(dieSong);
+            _music.Pause();
+            _body.velocity = Vector2.zero;
+            restartPopup.showDiedPanel();
+        }
     }
 }

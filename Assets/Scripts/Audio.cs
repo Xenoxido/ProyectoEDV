@@ -5,7 +5,7 @@ using UnityEngine;
 public class Audio : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private AudioSource audioSource;
+    private AudioSource audioSource;
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -23,13 +23,16 @@ public class Audio : MonoBehaviour
 
     public void Pause()
     {
-        if (audioSource.mute == false)
+
+        if (audioSource.mute) Debug.Log("true");
+        else Debug.Log("false");
+        if (audioSource.isPlaying)
         {
-            audioSource.mute = true;
+            audioSource.Pause();
         }
         else
         {
-            audioSource.mute = false;
+            audioSource.Play();
         }
     }
 }

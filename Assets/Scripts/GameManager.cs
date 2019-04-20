@@ -5,21 +5,18 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject audioSource;
     private int numberCoinsCollected;
     AudioSource[] audio;
     bool naranja, paella, petardo;
     // Start is called before the first frame update
     void Start()
     {
+        AudioSource _music = GameObject.FindGameObjectWithTag("music").GetComponent<AudioSource>();
+        if(!_music.isPlaying) _music.Play();
         numberCoinsCollected = 0;
         audio = GetComponents<AudioSource>();
         naranja = false; paella = false;  petardo = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void CoinCollected()
@@ -56,6 +53,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("Great! You found all the objects. Go to the final!");
         }
         
+    }
+
+    public bool isReady()
+    {
+        return paella && petardo && naranja;
     }
 
 }

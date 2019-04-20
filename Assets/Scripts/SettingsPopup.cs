@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SettingsPopup : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] private Slider slider;
     GameObject audio;
     float time;
     void Start()
@@ -13,13 +15,15 @@ public class SettingsPopup : MonoBehaviour
         gameObject.SetActive(false);
         audio = GameObject.FindGameObjectWithTag("music");
         time = Time.timeScale;
+        slider.value = PlayerPrefs.GetFloat("volume");
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        AudioListener.volume = slider.value;
+        PlayerPrefs.SetFloat("volume", AudioListener.volume);
     }
 
     public void show()
@@ -41,7 +45,7 @@ public class SettingsPopup : MonoBehaviour
     {
         Time.timeScale = time;
         gameObject.SetActive(false);
-        SceneManager.LoadScene("edv proyecto");
+        SceneManager.LoadScene("GameLevel");
     }
     public void clickMain()
     {
@@ -52,16 +56,10 @@ public class SettingsPopup : MonoBehaviour
 
     public void mute()
     {
-
         if(audio != null)
         {
             audio.SendMessage("Pause");
         }
-    }
-
-    public void volume(float f)
-    {
-        AudioListener.volume = f;
     }
     
 }

@@ -8,14 +8,18 @@ public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private Image settingsPopup;
     GameObject audio;
+    AudioSource _audio;
     private void Start()
     {
         audio = GameObject.FindGameObjectWithTag("music");
+        _audio = audio.GetComponent<AudioSource>();
+        AudioListener.volume = PlayerPrefs.GetFloat("volume");
+        _audio.Play();
         settingsPopup.gameObject.SetActive(false);
     }
     public void OnClickPlay()
     {
-        SceneManager.LoadScene("edv proyecto");
+        SceneManager.LoadScene("GameLevel");
     }
 
     public void OnClickCredits()
